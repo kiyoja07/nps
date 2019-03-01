@@ -8,34 +8,37 @@ import getApi
 def xmlToSeq(xml_string):
 
     root = ET.fromstring(xml_string)
-    elements = root.findall('body/items/item/seq')
+    elements = root.findall('body/items/item')
 
-    # dataCrtYm 자료생성년월
-    # seq 식별번호
-
-    seq_list = []
+    seq_date = []
 
     for element in elements:
-        seq_list.append(element.text)
+        each_seq_date = {}
 
-    return seq_list
+        each_seq_date['seq'] = element.find('seq').text # 식별번호
+        each_seq_date['date'] = element.find('dataCrtYm').text # 자료생성 년월
+        seq_date.append(each_seq_date)
 
-def xmlToDetail(xml_string):
+    return seq_date # list
+
+def xmlToDetail(seq_xml_string):
 
     info_dic = {'wkplNm': 'name', 'bzowrRgstNo': 'number', 'wkplRoadNmDtlAddr': 'address', 'crrmmNtcAmt': 'total_cost',
                 'jnngpCnt': 'num_of_employ'}
 
-    root = ET.fromstring(xml_string)
+    root = ET.fromstring(seq_xml_string['response_result'])
     elements = root.findall('body/item')
 
     each_info = {}
+    each_info['seq'] = seq_xml_string['seq']
+    each_info['date'] = seq_xml_string['date']
 
     for item in elements:
         each_info['name'] = item.find('wkplNm').text # 사업장명
         each_info['number'] = item.find('bzowrRgstNo').text  # 사업자등록번호
         each_info['address'] = item.find('wkplRoadNmDtlAddr').text  # 사업장도로명상세주소
-        each_info['nps_cost'] = item.find('crrmmNtcAmt').text  # 사업장도로명상세주소
-        each_info['employ'] = item.find('jnngpCnt').text  # 사업장도로명상세주소
+        each_info['nps_cost'] = item.find('crrmmNtcAmt').text  # 당월고지금액
+        each_info['employ'] = item.find('jnngpCnt').text  # 가입자수
 
-        print(each_info)
-    return 1
+
+    return each_info

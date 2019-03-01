@@ -1,15 +1,17 @@
 
+# -*- coding: utf8 -*-
+
+
 import getApi
 import getItem
 
-seq_result = getApi.getSeq('41', '117', '101', '124815')
-
+seq_result = getApi.getSeq('11', '560', '110', '107878', '호연')
 seq_list = getItem.xmlToSeq(seq_result)
 
-print(seq_list)
 
-for i in seq_list:
-    details = getApi.getDetails(i)
+for i in range(len(seq_list)):
+    each_seq = seq_list[i]
+    details = getApi.getDetails(each_seq)
 
     detail_result = getItem.xmlToDetail(details)
 
