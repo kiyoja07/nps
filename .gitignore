@@ -279,3 +279,6 @@ Thumbs.db
 
 # Hide API Keys
 config.py
+
+# Hide Folders
+.idea/

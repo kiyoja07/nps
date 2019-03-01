@@ -23,9 +23,6 @@ def xmlToSeq(xml_string):
 
 def xmlToDetail(seq_xml_string):
 
-    info_dic = {'wkplNm': 'name', 'bzowrRgstNo': 'number', 'wkplRoadNmDtlAddr': 'address', 'crrmmNtcAmt': 'total_cost',
-                'jnngpCnt': 'num_of_employ'}
-
     root = ET.fromstring(seq_xml_string['response_result'])
     elements = root.findall('body/item')
 
@@ -39,6 +36,5 @@ def xmlToDetail(seq_xml_string):
         each_info['address'] = item.find('wkplRoadNmDtlAddr').text  # 사업장도로명상세주소
         each_info['nps_cost'] = item.find('crrmmNtcAmt').text  # 당월고지금액
         each_info['employ'] = item.find('jnngpCnt').text  # 가입자수
-
 
     return each_info
