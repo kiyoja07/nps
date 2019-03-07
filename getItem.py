@@ -33,6 +33,8 @@ def xmlToDetail(seq_xml_string):
     for item in elements:
         each_info['name'] = item.find('wkplNm').text # 사업장명
         each_info['number'] = item.find('bzowrRgstNo').text  # 사업자등록번호
+        each_info['biz_category'] = item.find('vldtVlKrnNm').text  # 사업장업종코드명
+        each_info['company_category'] = item.find('wkplStylDvcd').text  # 사업장형태구분코드, 1:법인, 2:개인
         each_info['address'] = item.find('wkplRoadNmDtlAddr').text  # 사업장도로명상세주소
         each_info['nps_cost'] = item.find('crrmmNtcAmt').text  # 당월고지금액
         each_info['employ'] = item.find('jnngpCnt').text  # 가입자수
