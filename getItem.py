@@ -17,6 +17,7 @@ def xmlToSeq(xml_string):
 
         each_seq_date['seq'] = element.find('seq').text # 식별번호
         each_seq_date['date'] = element.find('dataCrtYm').text # 자료생성 년월
+        
         seq_date.append(each_seq_date)
 
     return seq_date # list

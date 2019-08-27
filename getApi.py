@@ -6,8 +6,7 @@
 #-*-coding: utf-8
 
 
-import urllib.request
-import urllib.parse
+from urllib import request, parse
 import config
 
 API_URL_BASE = 'http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/'
