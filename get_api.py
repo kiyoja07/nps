@@ -24,6 +24,7 @@ def getSeq(province, city, dong, companyNum, name):
     response_body = urllib.request.urlopen(request).read()
 
     response_result = str(response_body, "utf-8")
+    print(response_result)
     return response_result
 
 def getDetails(seq_date):
