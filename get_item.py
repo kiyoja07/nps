@@ -2,10 +2,11 @@
 import xml.etree.ElementTree as ET
 import xmltodict
 import json
-import getApi
+import get_api
 
+# seq는 데이터 식별번호
 
-def xmlToSeq(xml_string):
+def find_seq_from_xml(xml_string):
 
     root = ET.fromstring(xml_string)
     elements = root.findall('body/items/item')

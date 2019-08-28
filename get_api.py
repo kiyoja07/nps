@@ -5,12 +5,9 @@
 
 #-*-coding: utf-8
 
-
-from urllib import request, parse
-import config
-
-API_URL_BASE = 'http://apis.data.go.kr/B552015/NpsBplcInfoInqireService/'
-service_key = config.apiKey()
+import urllib.request
+import urllib.parse
+from config import API_URL_BASE, SERVICE_KEY
 
 
 def getSeq(province, city, dong, companyNum, name):
@@ -22,7 +19,7 @@ def getSeq(province, city, dong, companyNum, name):
     call_info = '&ldong_addr_mgpl_dg_cd=' + province + '&ldong_addr_mgpl_sggu_cd=' + city + '&ldong_addr_mgpl_sggu_emd_cd=' + dong \
                 + '&wkpl_nm=' + name + '&bzowr_rgst_no=' + companyNum
 
-    request = urllib.request.Request(url + '?serviceKey=' + service_key + call_info)
+    request = urllib.request.Request(url + '?serviceKey=' + SERVICE_KEY + call_info)
     request.get_method = lambda: 'GET'
     response_body = urllib.request.urlopen(request).read()
 
@@ -35,11 +32,10 @@ def getDetails(seq_date):
     date = seq_date['date']
 
     url_getDetails = "getDetailInfoSearch"
-
     url = API_URL_BASE + url_getDetails
     call_info = '&seq=' + str(seq) # + '&data_crt_ym=' + str(year_month)
 
-    request = urllib.request.Request(url + '?serviceKey=' + service_key + call_info)
+    request = urllib.request.Request(url + '?serviceKey=' + SERVICE_KEY + call_info)
     request.get_method = lambda: 'GET'
     response_body = urllib.request.urlopen(request).read()
 
